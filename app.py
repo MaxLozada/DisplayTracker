@@ -12,9 +12,6 @@ from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 from flask_cors import CORS
 
-
-
-
 # Load .env file
 load_dotenv()
 
@@ -96,6 +93,7 @@ def monitor_display_name():
 
 
 # Function to send an email notification
+# Function to send an email notification
 def send_email(display_name, change):
     try:
         msg = MIMEMultipart()
@@ -156,7 +154,13 @@ def get_display_name():
 @app.route('/send_test_email', methods=['POST'])
 def send_test_email():
     try:
-        send_email("Test Display Name", change=True)  # Send email with a test display name
+        # Compare the current display name with the last fetched one
+        new_display_name = check_display_name()
+        if new_display_name != current_display_name:
+            send_email(new_display_name, change=True)  # Name has changed
+        else:
+            send_email(new_display_name, change=False)  # Name has not changed
+
         return jsonify({"message": "Test email sent successfully!"}), 200
     except Exception as e:
         print(f"Error sending test email: {e}")
