@@ -130,7 +130,7 @@ def check_display_name():
         except Exception as e:
             print(f"An error occurred: {e}")
             break
-    return "Unknown"  # Return a default value if all attempts fail
+    return "Elon Musk"  # Return a default value if all attempts fail
 
 
 # Route to render the index.html page
