@@ -11,52 +11,22 @@
 <h1>X User Profile Tracker</h1>
 
 <div class="container">
-    {% if user_data.current_name %}
     <div class="user-info">
-        <p><strong>Display Name:</strong> <span>{{ user_data.current_name }}</span></p>
-        <p><strong>Username:</strong> <span>@{{ user_data.current_username }}</span></p>
-        {% if user_data.last_change_time %}
-        <div class="alert">
-            <p><strong>Last Name Change:</strong> {{ user_data.last_change_time }}</p>
+        <p><strong>Display Name:</strong> <span id="currentName">Loading...</span></p>
+        <p><strong>Username:</strong> <span id="currentUsername">@Loading...</span></p>
+        <div class="alert last-change">
+            <p><strong>Last Name Change:</strong> <span id="lastChangeTime">{{ user_data.last_change_time or 'N/A' }}</span></p>
         </div>
-        {% else %}
-        <div class="no-changes">
-            <p>No changes detected since the last check.</p>
-        </div>
-        {% endif %}
+        <p><strong>Name Changed:</strong> <span id="nameChanged">No</span></p>
     </div>
-    {% else %}
-    <div class="loading">
-        <p>Loading user data...</p>
-    </div>
-    {% endif %}
 </div>
 
 <div class="footer">
     <p>Built with <span style="color: red;">♥</span> by <a href="https://your-website.com" target="_blank">Max</a></p>
 </div>
 
-<!-- JavaScript goes here -->
-<script>
-    // Example function to change the background color on button click
-    function changeBackgroundColor() {
-        document.body.style.backgroundColor = "#e0f7fa";  // New color
-    }
-
-    // Example: dynamically update user data
-    function updateUserInfo(name, username) {
-        document.querySelector('.user-info').innerHTML = `
-            <p><strong>Display Name:</strong> ${name}</p>
-            <p><strong>Username:</strong> @${username}</p>
-        `;
-    }
-
-    // Example: Trigger background change after 5 seconds
-    setTimeout(changeBackgroundColor, 5000);
-
-    // Example: Dynamically update user information (you could fetch data via an API)
-    setTimeout(() => updateUserInfo('New Name', 'newUsername123'), 3000);
-</script>
+<!-- Include the JavaScript file -->
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 
 </body>
 </html>

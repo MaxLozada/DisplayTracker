@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import requests
 import time
 from datetime import datetime
@@ -143,6 +143,13 @@ def index():
 def error():
     """Render the error page."""
     return render_template("error.html")
+
+
+@app.route("/api/user-data")
+def api_user_data():
+    """API endpoint to serve the user data as JSON."""
+    with user_data_lock:
+        return jsonify(user_data)
 
 
 if __name__ == "__main__":

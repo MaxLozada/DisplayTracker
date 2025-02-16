@@ -73,6 +73,27 @@ h1 {
     text-align: center;
 }
 
+.loading span {
+    font-weight: bold;
+    color: #4A90E2;
+}
+
+.name-changed {
+    background-color: #FF5722;
+    padding: 10px;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.name-changed:hover {
+    background-color: #FF3D00;
+}
+
 .footer {
     text-align: center;
     font-size: 0.9em;
@@ -91,6 +112,11 @@ h1 {
     color: #1D72B8;
 }
 
+/* Loading animation for dynamic updates */
+#currentName, #currentUsername, #lastChangeTime, #nameChanged {
+    font-style: italic;
+}
+
 @media (max-width: 768px) {
     h1 {
         font-size: 2.5em;
@@ -103,4 +129,26 @@ h1 {
     .user-info p {
         font-size: 1.1em;
     }
+}
+
+/* static/css/styles.css */
+
+.last-change {
+    background-color: #A5D6A7;  /* Light Green color */
+    padding: 18px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.last-change p {
+    margin: 0;
+}
+
+.last-change strong {
+    font-weight: bold;
+    color: #388E3C;  /* Darker green for strong text */
 }
