@@ -1,154 +1,108 @@
-/* static/css/styles.css */
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7fc;
+/* Global reset and box-sizing */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
     color: #333;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-h1 {
-    text-align: center;
-    font-size: 3em;
-    margin-top: 20px;
-    color: #4A90E2;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
+/* Container for the content */
 .container {
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 20px;
     background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px 60px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
 }
 
 .container:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: scale(1.03); /* Subtle hover effect */
 }
 
-.user-info {
+/* Heading styles */
+h1 {
+    font-size: 2.5rem;
+    color: #1E2A47; /* Deep blue for the heading */
     margin-bottom: 20px;
+    font-weight: 700;
 }
 
-.user-info p {
-    font-size: 1.2em;
-    margin: 10px 0;
-    line-height: 1.5;
+/* Paragraph styles */
+p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #666;
+    line-height: 1.6;
 }
 
-.user-info strong {
-    color: #4A90E2;
+/* Display name styling */
+strong {
+    font-size: 1.4rem;
+    color: #00A1FF; /* Bright blue for emphasis */
     font-weight: 600;
 }
 
-.alert {
-    background-color: #FFEB3B;
-    padding: 18px;
-    border-radius: 5px;
-    font-size: 1.1em;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-}
-
-.no-changes {
-    background-color: #8BC34A;
-    padding: 18px;
-    border-radius: 5px;
-    font-size: 1.1em;
-    color: #fff;
-    margin-bottom: 20px;
-    text-align: center;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-}
-
-.loading {
-    font-size: 1.2em;
-    color: #888;
-    text-align: center;
-}
-
-.loading span {
-    font-weight: bold;
-    color: #4A90E2;
-}
-
-.name-changed {
-    background-color: #FF5722;
-    padding: 10px;
-    color: white;
-    font-weight: 600;
-    border-radius: 5px;
-    text-align: center;
-    margin-top: 20px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-}
-
-.name-changed:hover {
-    background-color: #FF3D00;
-}
-
-.footer {
-    text-align: center;
-    font-size: 0.9em;
-    color: #aaa;
+/* Footer styling */
+footer {
     margin-top: 30px;
+    font-size: 1rem;
+    color: #777;
 }
 
-.footer a {
-    color: #4A90E2;
-    text-decoration: none;
+footer p {
     font-weight: 500;
-    transition: color 0.2s ease;
 }
 
-.footer a:hover {
-    color: #1D72B8;
+/* Heart styling */
+footer p span.heart {
+    color: red;
+    font-size: 1.7rem;  /* Larger heart */
+    transition: transform 0.3s ease;
 }
 
-/* Loading animation for dynamic updates */
-#currentName, #currentUsername, #lastChangeTime, #nameChanged {
-    font-style: italic;
+footer p span.heart:hover {
+    transform: scale(1.2); /* Slightly grow the heart on hover */
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.5em;
-    }
-
     .container {
-        padding: 15px;
+        padding: 30px 40px;
     }
 
-    .user-info p {
-        font-size: 1.1em;
+    h1 {
+        font-size: 2rem;
+    }
+
+    p, strong {
+        font-size: 1rem;
     }
 }
 
-/* static/css/styles.css */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 30px;
+    }
 
-.last-change {
-    background-color: #A5D6A7;  /* Light Green color */
-    padding: 18px;
-    border-radius: 5px;
-    font-size: 1.1em;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-}
+    h1 {
+        font-size: 1.8rem;
+    }
 
-.last-change p {
-    margin: 0;
-}
-
-.last-change strong {
-    font-weight: bold;
-    color: #388E3C;  /* Darker green for strong text */
+    p, strong {
+        font-size: 0.9rem;
+    }
 }
