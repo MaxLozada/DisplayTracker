@@ -13,10 +13,31 @@
     <p>The page updates automatically every 30 minutes to check if the display name has changed.</p>
 
     <!-- Button to send the test email -->
-    <button onclick="sendTestEmail()">Send Test Email</button>
+    <button id="testEmailButton">Send Test Email</button>
 </div>
 <footer>
     <p>Powered with <span class="heart">❤️</span> by Max!</p>
 </footer>
+
+<script>
+    // Function to handle the button click and send the test email request
+    function sendTestEmail() {
+        fetch('/send_test_email', {
+            method: 'POST',
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Show a message to the user based on the response
+            alert(data.message);
+        })
+        .catch(error => {
+            console.error('Error sending test email:', error);
+            alert('Error sending test email');
+        });
+    }
+
+    // Add an event listener to the button to trigger the function
+    document.getElementById('testEmailButton').addEventListener('click', sendTestEmail);
+</script>
 </body>
 </html>

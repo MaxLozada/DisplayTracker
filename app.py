@@ -10,6 +10,10 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
+from flask_cors import CORS
+
+
+
 
 # Load .env file
 load_dotenv()
@@ -25,6 +29,9 @@ client = tweepy.Client(bearer_token=BEARER_TOKEN)
 
 # Initialize Flask app
 app = Flask(__name__)
+
+# Enable CORS for all routes
+CORS(app)
 
 # Global variable to track display name status
 current_display_name = "Elon Musk"  # Default value before fetching data
