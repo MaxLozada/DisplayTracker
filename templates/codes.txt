@@ -1,0 +1,9 @@
+Now you can run your Flask app by executing:
+
+python app.py
+
+
+Once the app is running, you can open your browser and go to:
+
+
+http://127.0.0.1:5000/

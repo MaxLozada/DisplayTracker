@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter User Profile Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<h1>X User Profile Tracker</h1>
+
+<div class="container">
+    {% if user_data.current_name %}
+    <div class="user-info">
+        <p><strong>Display Name:</strong> {{ user_data.current_name }}</p>
+        <p><strong>Username:</strong> @{{ user_data.current_username }}</p>
+        {% if user_data.last_change_time %}
+        <div class="alert">
+            <p><strong>Last Name Change:</strong> {{ user_data.last_change_time }}</p>
+        </div>
+        {% else %}
+        <div class="no-changes">
+            <p>No changes detected since the last check.</p>
+        </div>
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="loading">
+        <p>Loading user data...</p>
+    </div>
+    {% endif %}
+</div>
+
+<div class="footer">
+    <p>Built with <span style="color: red;">♥</span> by <a href="https://your-website.com" target="_blank">Max</a></p>
+</div>
+
+</body>
+</html>
