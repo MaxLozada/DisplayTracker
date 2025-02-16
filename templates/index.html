@@ -4,31 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elon Musk Display Name Tracker</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/css/styles.css">
-    <script>
-        // Function to fetch the updated display name
-        function fetchDisplayName() {
-            fetch('/get_display_name')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('display-name').textContent = data.display_name;
-                })
-                .catch(error => console.error('Error fetching display name:', error));
-        }
-
-        // Fetch the display name every 15 minutes (900000 ms)
-        setInterval(fetchDisplayName, 900000); // 900000 ms = 15 minutes
-
-        // Initial fetch when the page loads
-        window.onload = fetchDisplayName;
-    </script>
 </head>
 <body>
 <div class="container">
     <h1>@elonmusk Display Name Tracker</h1>
-    <p>Current Display Name: <strong id="display-name">{{ display_name }}</strong></p>
-    <p>The page updates automatically every 15 minutes to check if the display name has changed.</p>
+    <p>Current Display Name: <strong>{{ display_name }}</strong></p> <!-- Current display name -->
+    <p>The page updates automatically every 30 minutes to check if the display name has changed.</p>
+
+    <!-- Button to send the test email -->
+    <button onclick="sendTestEmail()">Send Test Email</button>
 </div>
 <footer>
     <p>Powered with <span class="heart">❤️</span> by Max!</p>

@@ -56,6 +56,37 @@ strong {
     font-weight: 600;
 }
 
+/* Button styling */
+button {
+    background-color: #00A1FF;  /* Bright blue background */
+    color: white;               /* White text */
+    border: none;               /* Remove default border */
+    padding: 12px 25px;         /* Add padding around the button */
+    font-size: 1.1rem;          /* Set font size */
+    border-radius: 8px;         /* Rounded corners */
+    cursor: pointer;           /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.3s;  /* Smooth transitions */
+    margin-top: 20px;           /* Space above the button */
+}
+
+/* Hover effect */
+button:hover {
+    background-color: #007BB5;  /* Darker blue on hover */
+    transform: scale(1.05);      /* Slightly grow the button */
+}
+
+/* Focus effect (when button is focused on) */
+button:focus {
+    outline: none;              /* Remove the default focus outline */
+    box-shadow: 0 0 10px rgba(0, 161, 255, 0.5);  /* Blue glow effect */
+}
+
+/* Active state when button is clicked */
+button:active {
+    background-color: #005f87;  /* Dark blue when button is pressed */
+    transform: scale(0.98);      /* Shrink slightly on click */
+}
+
 /* Footer styling */
 footer {
     margin-top: 30px;
@@ -91,6 +122,10 @@ footer p span.heart:hover {
     p, strong {
         font-size: 1rem;
     }
+
+    button {
+        padding: 10px 20px; /* Smaller button on smaller screens */
+    }
 }
 
 @media (max-width: 480px) {
@@ -104,5 +139,10 @@ footer p span.heart:hover {
 
     p, strong {
         font-size: 0.9rem;
+    }
+
+    button {
+        padding: 8px 15px;  /* Smaller button on very small screens */
+        font-size: 0.9rem;   /* Adjust font size for the button */
     }
 }
