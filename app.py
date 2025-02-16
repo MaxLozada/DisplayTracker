@@ -27,7 +27,7 @@ client = tweepy.Client(bearer_token=BEARER_TOKEN)
 app = Flask(__name__)
 
 # Global variable to track display name status
-current_display_name = "Unknown"  # Default value before fetching data
+current_display_name = "Elon Musk"  # Default value before fetching data
 
 # To track the number of requests made and the time of the requests
 request_times = deque()
