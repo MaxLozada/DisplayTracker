@@ -13,6 +13,7 @@ h1 {
     font-size: 3em;
     margin-top: 20px;
     color: #4A90E2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .container {
@@ -20,8 +21,13 @@ h1 {
     margin: 30px auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.container:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .user-info {
@@ -31,30 +37,34 @@ h1 {
 .user-info p {
     font-size: 1.2em;
     margin: 10px 0;
+    line-height: 1.5;
 }
 
 .user-info strong {
     color: #4A90E2;
+    font-weight: 600;
 }
 
 .alert {
     background-color: #FFEB3B;
-    padding: 15px;
+    padding: 18px;
     border-radius: 5px;
     font-size: 1.1em;
     color: #333;
     margin-bottom: 20px;
     text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .no-changes {
     background-color: #8BC34A;
-    padding: 15px;
+    padding: 18px;
     border-radius: 5px;
     font-size: 1.1em;
     color: #fff;
     margin-bottom: 20px;
     text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .loading {
@@ -73,4 +83,24 @@ h1 {
 .footer a {
     color: #4A90E2;
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer a:hover {
+    color: #1D72B8;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5em;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .user-info p {
+        font-size: 1.1em;
+    }
 }

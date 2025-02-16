@@ -23,6 +23,7 @@ SENDER_EMAIL = os.getenv('SENDER_EMAIL')
 SENDER_PASSWORD = os.getenv('SENDER_PASSWORD')
 RECEIVER_EMAIL = os.getenv('RECEIVER_EMAIL')
 
+
 # Email sending function
 def send_email(subject, body, name_changed):
     if not SENDER_EMAIL or not SENDER_PASSWORD or not RECEIVER_EMAIL:
@@ -67,6 +68,7 @@ user_data = {
 
 app = Flask(__name__)  # Create the Flask app instance
 
+
 def get_user_details(username, bearer_token):
     if not bearer_token:
         print("Bearer token is missing.")
@@ -80,13 +82,17 @@ def get_user_details(username, bearer_token):
 
     if response.status_code == 200:
         return response.json()
-    elif response.status_code == 429:
-        print("Rate limit exceeded. Retrying after 10 minutes.")
-        time.sleep(10 * 60)  # Sleep for 5 minutes if rate limit is exceeded
+    elif response.status_code == 429:  # Rate limit exceeded
+        reset_time = int(response.headers.get("x-rate-limit-reset", time.time()))
+        current_time = time.time()
+        sleep_time = reset_time - current_time + 5  # Add a small buffer to avoid hitting rate limit again
+        print(f"Rate limit exceeded. Sleeping for {sleep_time} seconds.")
+        time.sleep(sleep_time)  # Sleep until the rate limit resets
         return get_user_details(username, bearer_token)  # Retry after sleeping
     else:
         print(f"Error fetching user details: {response.status_code} - {response.text}")
         return None
+
 
 def check_for_changes():
     previous_name = None
@@ -104,7 +110,8 @@ def check_for_changes():
             if previous_name and current_name != previous_name:
                 name_changed = True
                 last_change_time = current_time
-                print(f"Alert! @{current_username} changed their Display Name from '{previous_name}' to '{current_name}' at {last_change_time}")
+                print(
+                    f"Alert! @{current_username} changed their Display Name from '{previous_name}' to '{current_name}' at {last_change_time}")
 
                 # Send email notification when name changes
                 subject = f"Twitter Name Change Alert for @{current_username}"
@@ -133,14 +140,15 @@ def check_for_changes():
         time.sleep(CHECK_INTERVAL)
 
 
-
 @app.route('/')
 def index():
     return render_template('index.html', user_data=user_data)
 
+
 @app.route('/error')
 def error():
     return render_template('error.html')
+
 
 if __name__ == "__main__":
     # Run the background thread that checks for name changes
@@ -149,4 +157,4 @@ if __name__ == "__main__":
     thread.start()
 
     # Run the Flask app
-    app.run(debug=True)
+    app.run(debug=True, threaded=True)

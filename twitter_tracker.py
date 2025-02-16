@@ -28,9 +28,13 @@ def get_user_details(username, bearer_token):
     # Handling response status codes
     if response.status_code == 200:
         return response.json()
-    elif response.status_code == 429:
-        print("Rate limit exceeded. Retrying after 10 minutes.")
-        time.sleep(10 * 60)  # Sleep for 5 minutes if rate limit is exceeded
+    elif response.status_code == 429:  # Rate limit exceeded
+        # Get the rate limit reset time from the response headers
+        reset_time = int(response.headers.get("x-rate-limit-reset", time.time()))
+        current_time = time.time()
+        sleep_time = reset_time - current_time + 5  # Add a small buffer to avoid hitting rate limit again
+        print(f"Rate limit exceeded. Sleeping for {sleep_time} seconds.")
+        time.sleep(sleep_time)  # Sleep until the rate limit resets
         return get_user_details(username, bearer_token)  # Retry after sleeping
     else:
         print(f"Error fetching user details: {response.status_code} - {response.text}")
@@ -56,7 +60,8 @@ def main():
             # Check if the name has changed
             if previous_name and current_name != previous_name:
                 last_change_time = current_time
-                print(f"Alert! @{current_username} changed their Display Name from '{previous_name}' to '{current_name}' at {last_change_time}")
+                print(
+                    f"Alert! @{current_username} changed their Display Name from '{previous_name}' to '{current_name}' at {last_change_time}")
             elif not previous_name or current_name == previous_name:
                 print(f"@{current_username} has not changed their Display Name since the last check.")
 
